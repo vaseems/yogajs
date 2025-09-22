@@ -176,82 +176,126 @@
             transition: opacity .25s ease;
             opacity: .8;
         }
+
+        .app-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(18, 23, 42, 0.95);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--brand);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            background: var(--bg);
+            font-family: Inter, ui-sans-serif, system-ui;
+            color: var(--fg);
+            overflow: hidden;
+            flex-direction: column;
+            /* so header sits on top */
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            margin-top: 60px;
+            /* push below header */
+        }
     </style>
     <script src="yoga.js"></script>
 
 </head>
 
 <body>
+    <header class="app-header">
+        <h1>🧘 YogaJS Console Playground</h1>
+    </header>
     <canvas id="scene"></canvas>
+    <div class="main-container">
 
-    <aside class="sidebar">
-        <h2>Array</h2>
-        <div class="method active" data-method="contains">contains()</div>
-        <div class="method" data-method="iterator">iterator()</div>
-        <div class="method" data-method="concatAll">concatAll()</div>
-        <div class="method" data-method="apply">apply()</div>
-        <div class="method" data-method="truthy">truthy()</div>
-        <div class="method" data-method="difference">difference()</div>
-        <div class="method" data-method="differenceBy">differenceBy()</div>
-        <div class="method" data-method="unique">unique()</div>
-        <div class="method" data-method="flatten">flatten()</div>
-        <div class="method" data-method="groupBy">groupBy()</div>
-        <div class="method" data-method="chunk">chunk()</div>
-        <div class="method" data-method="intersection">intersection()</div>
-
-
-        <h2>Object</h2>
-        <div class="method" data-method="objSize">objSize()</div>
-        <div class="method" data-method="entries">entries()</div>
-        <div class="method" data-method="mapValues">mapValues()</div>
-        <div class="method" data-method="pick">pick()</div>
-        <div class="method" data-method="omit">omit()</div>
-        <div class="method" data-method="deepClone">deepClone()</div>
+        <aside class="sidebar">
+            <h2>Array</h2>
+            <div class="method active" data-method="contains">contains()</div>
+            <div class="method" data-method="iterator">iterator()</div>
+            <div class="method" data-method="concatAll">concatAll()</div>
+            <div class="method" data-method="apply">apply()</div>
+            <div class="method" data-method="truthy">truthy()</div>
+            <div class="method" data-method="difference">difference()</div>
+            <div class="method" data-method="differenceBy">differenceBy()</div>
+            <div class="method" data-method="unique">unique()</div>
+            <div class="method" data-method="flatten">flatten()</div>
+            <div class="method" data-method="groupBy">groupBy()</div>
+            <div class="method" data-method="chunk">chunk()</div>
+            <div class="method" data-method="intersection">intersection()</div>
 
 
-        <h2>String</h2>
-        <div class="method" data-method="capitalize">capitalize()</div>
-        <div class="method" data-method="reverse">reverse()</div>
-        <div class="method" data-method="camelCase">camelCase()</div>
+            <h2>Object</h2>
+            <div class="method" data-method="objSize">objSize()</div>
+            <div class="method" data-method="entries">entries()</div>
+            <div class="method" data-method="mapValues">mapValues()</div>
+            <div class="method" data-method="pick">pick()</div>
+            <div class="method" data-method="omit">omit()</div>
+            <div class="method" data-method="deepClone">deepClone()</div>
 
 
-        <h2>Number</h2>
-        <div class="method" data-method="clamp">clamp()</div>
-        <div class="method" data-method="toCurrency">toCurrency()</div>
+            <h2>String</h2>
+            <div class="method" data-method="capitalize">capitalize()</div>
+            <div class="method" data-method="reverse">reverse()</div>
+            <div class="method" data-method="camelCase">camelCase()</div>
 
 
-        <h2>Date</h2>
-        <div class="method" data-method="format">format()</div>
-        <div class="method" data-method="addDays">addDays()</div>
+            <h2>Number</h2>
+            <div class="method" data-method="clamp">clamp()</div>
+            <div class="method" data-method="toCurrency">toCurrency()</div>
 
 
-        <h2>Function</h2>
-        <div class="method" data-method="memoize">memoize()</div>
-        <div class="method" data-method="curry">curry()</div>
-        <div class="method" data-method="debounce">debounce()</div>
-        <div class="method" data-method="throttle">throttle()</div>
-    </aside>
+            <h2>Date</h2>
+            <div class="method" data-method="format">format()</div>
+            <div class="method" data-method="addDays">addDays()</div>
 
-    <main class="main">
-        <div class="doc-card" id="doc">
-            <h1>concat()</h1>
-            <p><strong>Description:</strong> Returns a new array that is the result of merging two or more arrays.</p>
-            <pre><code>const a = [1,2,3];
+
+            <h2>Function</h2>
+            <div class="method" data-method="memoize">memoize()</div>
+            <div class="method" data-method="curry">curry()</div>
+            <div class="method" data-method="debounce">debounce()</div>
+            <div class="method" data-method="throttle">throttle()</div>
+        </aside>
+
+        <main class="main">
+            <div class="doc-card" id="doc">
+                <h1>concat()</h1>
+                <p><strong>Description:</strong> Returns a new array that is the result of merging two or more arrays.
+                </p>
+                <pre><code>const a = [1,2,3];
 const b = [4,5];
 const all = a.concat(b);
 // ➜ [1,2,3,4,5]</code></pre>
 
-            <div class="playground">
-                <textarea id="code">// Try it yourself
+                <div class="playground">
+                    <textarea id="code">// Try it yourself
 const a = [10,20];
 const b = [30,40];
 a.concat(b);</textarea>
-                <button class="btn" id="run">Run ▶</button>
-                <div class="output" id="output"></div>
+                    <button class="btn" id="run">Run ▶</button>
+                    <div class="output" id="output"></div>
+                </div>
             </div>
-        </div>
-    </main>
+        </main>
 
+    </div>
     <!-- Three.js + GSAP -->
     <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
     <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
